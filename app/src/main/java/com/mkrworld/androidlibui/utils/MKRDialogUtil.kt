@@ -2,8 +2,10 @@ package com.mkrworld.androidlibui.utils
 
 import android.app.AlertDialog
 import android.app.Dialog
+import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.DialogInterface
+import android.content.SharedPreferences
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
@@ -44,7 +46,7 @@ class MKRDialogUtil {
             }
             val alertDialog: AlertDialog.Builder
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                alertDialog = AlertDialog.Builder(context, android.R.style.Theme_Material_Light_Dialog_Alert)
+                alertDialog = AlertDialog.Builder(context, Settings.getDialogTheme(context))
             } else {
                 alertDialog = AlertDialog.Builder(context)
             }
@@ -81,7 +83,7 @@ class MKRDialogUtil {
             }
             var customDialog: CustomDialog
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                customDialog = CustomDialog(context, android.R.style.Theme_Material_Light_Dialog_Alert, layoutId)
+                customDialog = CustomDialog(context, Settings.getDialogTheme(context), layoutId)
             } else {
                 customDialog = CustomDialog(context, layoutId)
             }
@@ -119,7 +121,7 @@ class MKRDialogUtil {
             }
             val alertDialog: AlertDialog.Builder
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                alertDialog = AlertDialog.Builder(context, android.R.style.Theme_Material_Light_Dialog_Alert)
+                alertDialog = AlertDialog.Builder(context, Settings.getDialogTheme(context))
             } else {
                 alertDialog = AlertDialog.Builder(context)
             }
@@ -163,7 +165,7 @@ class MKRDialogUtil {
             }
             var customDialog: CustomDialog
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                customDialog = CustomDialog(context, android.R.style.Theme_Material_Light_Dialog_Alert, layoutId)
+                customDialog = CustomDialog(context, Settings.getDialogTheme(context), layoutId)
             } else {
                 customDialog = CustomDialog(context, layoutId)
             }
@@ -368,6 +370,63 @@ class MKRDialogUtil {
                 }
             }
         }
+    }
 
+    /**
+     * Class to hold the setting of Dialog
+     */
+    class Settings {
+        companion object {
+
+            private val STORE = "MKRDIALOG"
+            private val THEME = "THEME"
+
+            /**
+             * Method to get the Theme of the Dialog
+             * @param context
+             */
+            fun getDialogTheme(context: Context): Int {
+                return getShearedPreference(context).getInt(THEME, android.R.style.Theme_Material_Light_Dialog_Alert)
+            }
+
+            /**
+             * Method to set the Theme of the Dialog
+             * @param context
+             * @param theme
+             */
+            fun setDialogTheme(context: Context, theme: Int): Int {
+                return getShearedPreference(context).getInt(THEME, theme)
+            }
+
+            /**
+             * Method to clear the Data Store
+             *
+             * @param context
+             */
+            fun clearStore(context: Context) {
+                getShearedPreferenceEditor(context).clear().commit()
+            }
+
+            /**
+             * Method to return the Data Store Preference
+             *
+             * @param context
+             * @return
+             */
+            private fun getShearedPreference(context: Context): SharedPreferences {
+                return context.getSharedPreferences(STORE, Context.MODE_PRIVATE)
+            }
+
+            /**
+             * caller to commit this editor
+             *
+             * @param context
+             * @return Editor
+             */
+            private fun getShearedPreferenceEditor(context: Context): SharedPreferences.Editor {
+                return getShearedPreference(context).edit()
+            }
+
+        }
     }
 }
