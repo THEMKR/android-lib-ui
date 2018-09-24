@@ -54,11 +54,6 @@ class MKRPromotion {
 
         /**
          * Method to get the share Intent
-         * @see {intent = Intent(Intent.ACTION_SEND)}
-         * @see {emailIntent.putExtra(Intent.EXTRA_SUBJECT, appName)}
-         * @see {emailIntent.putExtra(Intent.EXTRA_TEXT, "")}
-         * @see {emailIntent.type = "text / *"}
-         * @see {emailIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)}
          * @param appName
          * @param shareMessage
          * @param shareUrl
