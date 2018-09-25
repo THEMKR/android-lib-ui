@@ -14,8 +14,12 @@ android {
         versionName "1.0"
     }
     buildTypes {
+        debug{
+            minifyEnabled false
+        }
+
         release {
-            minifyEnabled true
+            minifyEnabled false
         }
     }
 }
