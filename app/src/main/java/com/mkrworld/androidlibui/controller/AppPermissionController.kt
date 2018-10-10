@@ -103,6 +103,6 @@ class AppPermissionController {
     }
 
     companion object {
-        private val REQUEST_PERMISSION = 100
+        private val REQUEST_PERMISSION = 10000
     }
 }

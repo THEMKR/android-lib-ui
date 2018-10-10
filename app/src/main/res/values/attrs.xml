@@ -4,9 +4,17 @@
         <attr name="progress_width" format="dimension" />
         <attr name="progress_color" format="color" />
         <attr name="progress_image" format="reference" />
-        <attr name="progress_state" format="enum" >
+        <attr name="progress_state" format="enum">
             <enum name="enable" value="0" />
             <enum name="disable" value="1" />
         </attr>
+    </declare-styleable>
+
+    <declare-styleable name="FontTextView">
+        <attr name="text_view_face" format="string" />
+    </declare-styleable>
+
+    <declare-styleable name="FontEditText">
+        <attr name="edit_text_face" format="string" />
     </declare-styleable>
 </resources>

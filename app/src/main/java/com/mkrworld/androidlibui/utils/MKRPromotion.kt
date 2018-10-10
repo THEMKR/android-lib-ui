@@ -38,13 +38,24 @@ class MKRPromotion {
 
         }
 
+
         /**
          * Method to get more apps
          *
          * @param context
          */
         fun openMoreAppScreen(context: Context) {
-            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("market://search?q=pub:MKR WORLD"))
+            openMoreAppScreen(context, "MKR WORLD")
+        }
+
+        /**
+         * Method to get more apps
+         *
+         * @param context
+         * @param pub
+         */
+        fun openMoreAppScreen(context: Context, pub: String) {
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("market://search?q=pub:${pub}"))
             try {
                 context.startActivity(intent)
             } catch (e: Exception) {
@@ -65,7 +76,7 @@ class MKRPromotion {
             intent.type = "text/plain"
             intent.putExtra(Intent.EXTRA_SUBJECT, appName)
             intent.putExtra(Intent.EXTRA_TEXT, message)
-            val sendIntent = Intent.createChooser(intent, "Share File")
+            val sendIntent = Intent.createChooser(intent, "Share")
             sendIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             return intent
         }
