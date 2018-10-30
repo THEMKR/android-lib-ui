@@ -1,11 +1,10 @@
-package com.nazgul.library.androidlibui.ui.view
+package com.nazgul.library.ui.ui.view
 
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.Path
 import android.util.AttributeSet
-import com.fourorange.deependerhooda.ui.custom.FontEditText
 
 class EditTextDropDown : FontEditText {
     private var mPaint : Paint? = null

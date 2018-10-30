@@ -1,4 +1,4 @@
-package com.nazgul.library.androidlibui.callback
+package com.nazgul.library.ui.callback
 
 import android.os.Bundle
 import android.support.v4.app.Fragment

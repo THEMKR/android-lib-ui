@@ -1,4 +1,4 @@
-package com.nazgul.library.androidlibui
+package com.nazgul.library.ui
 
 
 /**

@@ -1,4 +1,4 @@
-package com.nazgul.library.androidlibui.utils
+package com.nazgul.library.ui.utils
 
 import android.app.AlertDialog
 import android.app.Dialog
@@ -13,7 +13,7 @@ import android.view.ViewGroup
 import android.view.Window
 import android.widget.RelativeLayout
 import android.widget.TextView
-import com.nazgul.library.androidlibui.ui.view.ProgressView
+import com.nazgul.library.ui.ui.view.ProgressView
 
 
 /**

@@ -1,4 +1,4 @@
-package com.nazgul.library.androidlibui.chromium
+package com.nazgul.library.ui.chromium
 
 /**
  * Created by a1zfkxa3 on 2/6/2018.

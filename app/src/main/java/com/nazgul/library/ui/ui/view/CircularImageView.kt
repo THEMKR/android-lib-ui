@@ -1,4 +1,4 @@
-package com.nazgul.library.androidlibui.ui.view
+package com.nazgul.library.ui.ui.view
 
 import android.content.Context
 import android.graphics.*
@@ -6,7 +6,7 @@ import android.os.Build
 import android.support.annotation.RequiresApi
 import android.util.AttributeSet
 import android.view.View
-import com.nazgul.library.androidlibui.R
+import com.nazgul.library.ui.R
 
 /**
  * Created by mkr on 30/3/18.

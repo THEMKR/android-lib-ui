@@ -1,4 +1,4 @@
-package com.nazgul.library.androidlibui.utils
+package com.nazgul.library.ui.utils
 
 import android.content.Context
 import android.content.Intent
@@ -19,7 +19,6 @@ class MKRPromotion {
             } catch (e: Exception) {
                 e.printStackTrace()
             }
-
         }
 
         /**

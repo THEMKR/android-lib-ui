@@ -1,11 +1,11 @@
-package com.nazgul.library.androidlibui.ui.view
+package com.nazgul.library.ui.ui.view
 
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Typeface
 import android.util.AttributeSet
 import android.widget.TextView
-import com.nazgul.library.androidlibui.R
+import com.nazgul.library.ui.R
 
 @SuppressLint("NewApi")
 open class FontTextView : TextView {

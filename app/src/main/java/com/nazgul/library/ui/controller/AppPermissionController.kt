@@ -1,4 +1,4 @@
-package com.nazgul.library.androidlibui.controller
+package com.nazgul.library.ui.controller
 
 import android.app.Activity
 import android.content.pm.PackageManager

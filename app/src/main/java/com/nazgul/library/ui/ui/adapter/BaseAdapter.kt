@@ -1,4 +1,4 @@
-package com.nazgul.library.androidlibui.ui.adapter
+package com.nazgul.library.ui.ui.adapter
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
