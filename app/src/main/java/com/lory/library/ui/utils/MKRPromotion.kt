@@ -1,4 +1,4 @@
-package com.nazgul.library.ui.utils
+package com.lory.library.ui.utils
 
 import android.content.Context
 import android.content.Intent

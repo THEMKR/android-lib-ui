@@ -1,4 +1,4 @@
-package com.nazgul.library.ui.ui.view
+package com.lory.library.ui.ui.view
 
 import android.graphics.Canvas
 import android.graphics.Paint

@@ -1,4 +1,4 @@
-package com.nazgul.library.ui.ui.view
+package com.lory.library.ui.ui.view
 
 import android.graphics.Rect
 import android.support.v7.widget.RecyclerView

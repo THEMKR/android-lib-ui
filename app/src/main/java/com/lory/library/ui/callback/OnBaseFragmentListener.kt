@@ -1,4 +1,4 @@
-package com.nazgul.library.ui.callback
+package com.lory.library.ui.callback
 
 import android.os.Bundle
 

@@ -1,4 +1,4 @@
-package com.nazgul.library.ui.ui.adapter
+package com.lory.library.ui.ui.adapter
 
 class BaseAdapterItem<MKR> {
     private var mViewType : Int? = null
