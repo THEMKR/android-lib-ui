@@ -13,9 +13,9 @@
 
 #	APP Level Gradle
 		<!-- DEPENDENCY INCLUDE IN LIB -->
-		implementation 'com.android.support:recyclerview-v7:28.0.0'
-        implementation 'com.android.support:appcompat-v7:28.0.0'
+        implementation 'com.android.support:recyclerview-v7:28.0.0'
+        implementation 'com.android.support:support-v4:28.0.0'
         implementation 'com.android.support:customtabs:28.0.0'
         
         <!-- SUPPORT MY BE INCLUDE -->
-        implementation 'com.lory.library:ui:1.0.1'
+        implementation 'com.lory.library:ui:1.0.2'
