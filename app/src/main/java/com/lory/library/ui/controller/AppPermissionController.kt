@@ -10,9 +10,9 @@ import android.widget.Toast
  * Created by delhivery on 4/7/16.
  */
 class AppPermissionController {
-    private var mPermission : Array<String>? = null
-    private var mActivity : Activity? = null
-    private var mOnAppPermissionControllerListener : OnAppPermissionControllerListener? = null
+    private val mPermission: Array<String>
+    private val mActivity: Activity
+    private val mOnAppPermissionControllerListener: OnAppPermissionControllerListener
 
     /**
      * Constructor
@@ -21,24 +21,13 @@ class AppPermissionController {
      * @param permission
      * @param onAppPermissionControllerListener
      */
-    constructor(activity : Activity, permission : Array<String>, onAppPermissionControllerListener : OnAppPermissionControllerListener?) {
+    constructor(activity: Activity, permission: Array<String>, onAppPermissionControllerListener: OnAppPermissionControllerListener) {
         mActivity = activity
         mOnAppPermissionControllerListener = onAppPermissionControllerListener
         if (permission != null) {
             mPermission = permission
-        }else{
-            mPermission = arrayOf()
-        }
-    }
-
-    /**
-     * Method to initialized the Application
-     */
-    fun initializedAppPermission() {
-        if (isHaveAllRequiredPermission()) {
-            mOnAppPermissionControllerListener?.onAppPermissionControllerListenerHaveAllRequiredPermission()
         } else {
-            requestPermission()
+            mPermission = arrayOf()
         }
     }
 
@@ -49,13 +38,13 @@ class AppPermissionController {
      * @param permissions
      * @param grantResults
      */
-    fun onRequestPermissionsResult(requestCode : Int, permissions : Array<String>?, grantResults : IntArray) {
+    fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>?, grantResults: IntArray) {
         when (requestCode) {
             REQUEST_PERMISSION -> {
-                if (! (grantResults.size > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
+                if (!(grantResults.size > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
                     Toast.makeText(mActivity, "App was unable to work properly. If required permission not granted", Toast.LENGTH_LONG).show()
                 }
-                initializedAppPermission()
+                requestPermission()
             }
         }
     }
@@ -65,10 +54,10 @@ class AppPermissionController {
      *
      * @return TRUE if have all permission, else FALSE
      */
-    private fun isHaveAllRequiredPermission() : Boolean {
+    fun isHaveAllRequiredPermission(): Boolean {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            for (permission in mPermission !!) {
-                if (mActivity !!.checkSelfPermission(permission) != PackageManager.PERMISSION_GRANTED) {
+            for (permission in mPermission!!) {
+                if (mActivity!!.checkSelfPermission(permission) != PackageManager.PERMISSION_GRANTED) {
                     return false
                 }
             }
@@ -82,10 +71,15 @@ class AppPermissionController {
      * @return TRUE if have all permission, else FALSE
      */
     private fun requestPermission() {
+        if (isHaveAllRequiredPermission()) {
+            mOnAppPermissionControllerListener?.onAppPermissionControllerListenerHaveAllRequiredPermission()
+            return
+        }
+        // CALL PERMISSION
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            for (permission in mPermission !!) {
-                if (mActivity !!.checkSelfPermission(permission) != PackageManager.PERMISSION_GRANTED) {
-                    mActivity !!.requestPermissions(arrayOf(permission), REQUEST_PERMISSION)
+            for (permission in mPermission!!) {
+                if (mActivity!!.checkSelfPermission(permission) != PackageManager.PERMISSION_GRANTED) {
+                    mActivity!!.requestPermissions(arrayOf(permission), REQUEST_PERMISSION)
                     return
                 }
             }
