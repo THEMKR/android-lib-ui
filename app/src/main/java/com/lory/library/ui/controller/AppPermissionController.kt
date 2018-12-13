@@ -70,7 +70,7 @@ class AppPermissionController {
      *
      * @return TRUE if have all permission, else FALSE
      */
-    private fun requestPermission() {
+    fun requestPermission() {
         if (isHaveAllRequiredPermission()) {
             mOnAppPermissionControllerListener?.onAppPermissionControllerListenerHaveAllRequiredPermission()
             return
