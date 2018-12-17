@@ -18,4 +18,4 @@
         implementation 'com.android.support:customtabs:28.0.0'
         
         <!-- SUPPORT MY BE INCLUDE -->
-        implementation 'com.lory.library:ui:1.0.4'
+        implementation 'com.lory.library:ui:1.0.5'

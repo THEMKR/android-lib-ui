@@ -10,7 +10,7 @@ import android.widget.Toast
  * Created by delhivery on 4/7/16.
  */
 class AppPermissionController {
-    private val mPermission: Array<String>
+    private val permission: Array<String>
     private val mActivity: Activity
     private val mOnAppPermissionControllerListener: OnAppPermissionControllerListener
 
@@ -24,11 +24,7 @@ class AppPermissionController {
     constructor(activity: Activity, permission: Array<String>, onAppPermissionControllerListener: OnAppPermissionControllerListener) {
         mActivity = activity
         mOnAppPermissionControllerListener = onAppPermissionControllerListener
-        if (permission != null) {
-            mPermission = permission
-        } else {
-            mPermission = arrayOf()
-        }
+        this.permission = permission
     }
 
     /**
@@ -44,8 +40,10 @@ class AppPermissionController {
                 if (!(grantResults.size > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
                     Toast.makeText(mActivity, "App was unable to work properly. If required permission not granted", Toast.LENGTH_LONG).show()
                 }
-                requestPermission()
             }
+        }
+        if (isHaveAllRequiredPermission()) {
+            mOnAppPermissionControllerListener?.onAppPermissionControllerListenerHaveAllRequiredPermission()
         }
     }
 
@@ -56,7 +54,7 @@ class AppPermissionController {
      */
     fun isHaveAllRequiredPermission(): Boolean {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            for (permission in mPermission!!) {
+            for (permission in permission!!) {
                 if (mActivity!!.checkSelfPermission(permission) != PackageManager.PERMISSION_GRANTED) {
                     return false
                 }
@@ -77,12 +75,7 @@ class AppPermissionController {
         }
         // CALL PERMISSION
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            for (permission in mPermission!!) {
-                if (mActivity!!.checkSelfPermission(permission) != PackageManager.PERMISSION_GRANTED) {
-                    mActivity!!.requestPermissions(arrayOf(permission), REQUEST_PERMISSION)
-                    return
-                }
-            }
+            mActivity!!.requestPermissions(permission, REQUEST_PERMISSION)
         }
     }
 
@@ -97,6 +90,6 @@ class AppPermissionController {
     }
 
     companion object {
-        private val REQUEST_PERMISSION = 10000
+        private val REQUEST_PERMISSION = 10001
     }
 }
