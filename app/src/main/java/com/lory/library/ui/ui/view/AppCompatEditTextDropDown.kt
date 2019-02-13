@@ -6,7 +6,7 @@ import android.graphics.Paint
 import android.graphics.Path
 import android.util.AttributeSet
 
-class EditTextDropDown : FontEditText {
+class AppCompatEditTextDropDown : AppCompatFontEditText {
     private var mPaint: Paint? = null
     private var mPath: Path? = null
     private var mArrowSize: Int = 0
@@ -20,10 +20,6 @@ class EditTextDropDown : FontEditText {
     }
 
     constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
-        init()
-    }
-
-    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int, defStyleRes: Int) : super(context, attrs, defStyleAttr, defStyleRes) {
         init()
     }
 

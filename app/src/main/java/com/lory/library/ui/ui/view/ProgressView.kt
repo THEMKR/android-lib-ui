@@ -20,7 +20,7 @@ class ProgressView : View {
     companion object {
     }
 
-    private var mRadius : Float = 0.toFloat()
+    private var mRadius: Float = 0.toFloat()
     private val mPaintFill = Paint(Paint.ANTI_ALIAS_FLAG)
     private val mPaint = Paint(Paint.ANTI_ALIAS_FLAG)
     private val mPaintText = Paint(Paint.ANTI_ALIAS_FLAG)
@@ -29,9 +29,9 @@ class ProgressView : View {
     private var mMargin = 0f
     private var mDotCount = 4
     private var mStep = 1
-    private var mTestSize : Float = 0.toFloat()
+    private var mTestSize: Float = 0.toFloat()
     private var mTextMessage = "Processing"
-    private var mIsRunning : Boolean = false
+    private var mIsRunning: Boolean = false
 
     private val mRunnable = object : Runnable {
 
@@ -43,7 +43,7 @@ class ProgressView : View {
             } else if (mIndex > mDotCount - 1) {
                 if (mDotCount - 2 >= 0) {
                     mIndex = (mDotCount - 2).toFloat()
-                    mStep = - 1
+                    mStep = -1
                 } else {
                     mIndex = 0f
                     mStep = 1
@@ -54,21 +54,21 @@ class ProgressView : View {
                 if (mIsRunning) {
                     mHandler.postDelayed(this, 200)
                 }
-            } catch (e : Exception) {
+            } catch (e: Exception) {
             }
 
         }
     }
 
-    constructor(context : Context) : super(context) {
+    constructor(context: Context) : super(context) {
         init(context)
     }
 
-    constructor(context : Context, attrs : AttributeSet) : super(context, attrs) {
+    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
         init(context)
     }
 
-    constructor(context : Context, attrs : AttributeSet, defStyle : Int) : super(context, attrs, defStyle) {
+    constructor(context: Context, attrs: AttributeSet, defStyle: Int) : super(context, attrs, defStyle) {
         init(context)
     }
 
@@ -82,7 +82,7 @@ class ProgressView : View {
         stop()
     }
 
-    private fun init(context : Context) {
+    private fun init(context: Context) {
         val width = context.resources.displayMetrics.widthPixels.toFloat()
         mMargin = width * 0.005f
         mRadius = width * 0.02f
@@ -99,17 +99,17 @@ class ProgressView : View {
         mPaintText.textSize = mTestSize
     }
 
-    fun setDotsCount(count : Int) {
+    fun setDotsCount(count: Int) {
         mDotCount = count
     }
 
-    fun setTextMessage(textMessage : String) {
+    fun setTextMessage(textMessage: String) {
         mTextMessage = textMessage
     }
 
     fun start() {
         mIsRunning = true
-        mIndex = - 1f
+        mIndex = -1f
         mHandler.removeCallbacks(mRunnable)
         mHandler.post(mRunnable)
     }
@@ -119,7 +119,7 @@ class ProgressView : View {
         mHandler.removeCallbacks(mRunnable)
     }
 
-    override fun onMeasure(widthMeasureSpec : Int, heightMeasureSpec : Int) {
+    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         var heightMeasureSpec = heightMeasureSpec
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
         heightMeasureSpec = View.MeasureSpec.makeMeasureSpec(((mRadius + mTestSize) * 2f).toInt(), View.MeasureSpec.EXACTLY)
@@ -127,7 +127,7 @@ class ProgressView : View {
 
     }
 
-    override fun onDraw(canvas : Canvas) {
+    override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         mPaintText.textSize = mTestSize
         val textSize = mPaintText.measureText(mTextMessage)

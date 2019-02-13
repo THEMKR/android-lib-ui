@@ -10,6 +10,14 @@
         </attr>
     </declare-styleable>
 
+    <declare-styleable name="AppCompatFontEditText">
+        <attr name="app_compat_edit_text_face" format="string" />
+    </declare-styleable>
+
+    <declare-styleable name="AppCompatFontTextView">
+        <attr name="app_compat_text_view_face" format="string" />
+    </declare-styleable>
+
     <declare-styleable name="FontTextView">
         <attr name="text_view_face" format="string" />
     </declare-styleable>
