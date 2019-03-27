@@ -25,4 +25,12 @@
     <declare-styleable name="FontEditText">
         <attr name="edit_text_face" format="string" />
     </declare-styleable>
+
+    <declare-styleable name="FontAutoCompleteTextView">
+        <attr name="auto_complete_text_view_face" format="string" />
+    </declare-styleable>
+
+    <declare-styleable name="AppCompatFontAutoCompleteTextView">
+        <attr name="app_compat_auto_complete_text_view_face" format="string" />
+    </declare-styleable>
 </resources>

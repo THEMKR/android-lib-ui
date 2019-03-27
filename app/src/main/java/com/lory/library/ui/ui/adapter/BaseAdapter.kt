@@ -10,19 +10,18 @@ import java.util.*
  * Created by mkr on 3/4/18.
  */
 class BaseAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>, BaseViewHolder.VHClickable, BaseViewHolder.VHLongClickable {
-    private var mBaseAdapterItemList : ArrayList<BaseAdapterItem<*>>? = null
-    private var mLongClickCallback : BaseViewHolder.VHLongClickable? = null
-    private var mClickCallback : BaseViewHolder.VHClickable? = null
-    private var mIsUpdatingList : Boolean = false
-    private var mBaseAdapterItemHandler : BaseAdapterItemHandler? = null
+    private val mBaseAdapterItemList: ArrayList<BaseAdapterItem<*>> = ArrayList()
+    private var mLongClickCallback: BaseViewHolder.VHLongClickable? = null
+    private var mClickCallback: BaseViewHolder.VHClickable? = null
+    private var mIsUpdatingList: Boolean = false
+    private var mBaseAdapterItemHandler: BaseAdapterItemHandler? = null
 
     /**
      * Constructor
      *
      * @param baseAdapterItemHandler
      */
-    constructor(baseAdapterItemHandler : BaseAdapterItemHandler) {
-        mBaseAdapterItemList = ArrayList()
+    constructor(baseAdapterItemHandler: BaseAdapterItemHandler) {
         mBaseAdapterItemHandler = baseAdapterItemHandler
     }
 
@@ -32,18 +31,18 @@ class BaseAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>, BaseViewHolde
      * @param recyclerView           Pass to listen the Last Item Visible Count
      * @param onLoadMoreItemListener Callback to listen the load even
      */
-    fun setOnLoadMoreListener(recyclerView : RecyclerView, onLoadMoreItemListener : OnLoadMoreItemListener) {
+    fun setOnLoadMoreListener(recyclerView: RecyclerView, onLoadMoreItemListener: OnLoadMoreItemListener) {
         recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrollStateChanged(recyclerView : RecyclerView, newState : Int) {
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
             }
 
-            override fun onScrolled(recyclerView : RecyclerView, dx : Int, dy : Int) {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
-                if (! mIsUpdatingList) {
-                    if (recyclerView !!.childCount > 1) {
+                if (!mIsUpdatingList) {
+                    if (recyclerView!!.childCount > 1) {
                         val childAdapterPosition = recyclerView.getChildAdapterPosition(recyclerView.getChildAt(recyclerView.childCount - 1))
-                        if (childAdapterPosition >= mBaseAdapterItemList !!.size - 1) {
+                        if (childAdapterPosition >= mBaseAdapterItemList.size - 1) {
                             mIsUpdatingList = true
                             onLoadMoreItemListener.onLoadMoreItemListener()
                         }
@@ -53,32 +52,32 @@ class BaseAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>, BaseViewHolde
         })
     }
 
-    override fun onCreateViewHolder(parent : ViewGroup, viewType : Int) : RecyclerView.ViewHolder {
-        val viewHolder = mBaseAdapterItemHandler !!.createHolder(LayoutInflater.from(parent.context), parent, viewType)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        val viewHolder = mBaseAdapterItemHandler!!.createHolder(LayoutInflater.from(parent.context), parent, viewType)
         viewHolder.setVHClickCallback(this)
         viewHolder.setVHLongClickCallback(this)
         return viewHolder
     }
 
-    override fun onBindViewHolder(holder : RecyclerView.ViewHolder, position : Int) {
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder !is BaseViewHolder<*>) return
-        var baseAdapterItem : BaseAdapterItem<*> = getItem(position)
+        var baseAdapterItem: BaseAdapterItem<*> = getItem(position)
         holder.bindFeedItem(baseAdapterItem)
     }
 
-    override fun getItemViewType(position : Int) : Int {
+    override fun getItemViewType(position: Int): Int {
         return getItem(position).getViewType()
     }
 
-    override fun getItemCount() : Int {
-        return mBaseAdapterItemList !!.size
+    override fun getItemCount(): Int {
+        return mBaseAdapterItemList.size
     }
 
-    override fun onViewHolderClicked(holder : BaseViewHolder<*>, view : View) {
+    override fun onViewHolderClicked(holder: BaseViewHolder<*>, view: View) {
         mClickCallback?.onViewHolderClicked(holder, view)
     }
 
-    override fun onViewHolderLongClicked(holder : BaseViewHolder<*>, view : View) {
+    override fun onViewHolderLongClicked(holder: BaseViewHolder<*>, view: View) {
         mLongClickCallback?.onViewHolderLongClicked(holder, view)
     }
 
@@ -88,8 +87,15 @@ class BaseAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>, BaseViewHolde
      * @param position
      * @return
      */
-    fun getItem(position : Int) : BaseAdapterItem<*> {
-        return mBaseAdapterItemList !!.get(position)
+    fun getItem(position: Int): BaseAdapterItem<*> {
+        return mBaseAdapterItemList.get(position)
+    }
+
+    /**
+     * Method to get the List of the Items
+     */
+    fun getItemList(): ArrayList<BaseAdapterItem<*>> {
+        return mBaseAdapterItemList
     }
 
     /**
@@ -97,10 +103,10 @@ class BaseAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>, BaseViewHolde
      *
      * @param list
      */
-    fun updateAdapterItemList(list : ArrayList<BaseAdapterItem<*>>?) {
-        mBaseAdapterItemList !!.clear()
+    fun updateAdapterItemList(list: ArrayList<BaseAdapterItem<*>>?) {
+        mBaseAdapterItemList.clear()
         if (list != null) {
-            mBaseAdapterItemList !!.addAll(list)
+            mBaseAdapterItemList.addAll(list)
         }
         mIsUpdatingList = false
         notifyDataSetChanged()
@@ -111,9 +117,9 @@ class BaseAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>, BaseViewHolde
      *
      * @param list
      */
-    fun appendAdapterItemList(list : ArrayList<BaseAdapterItem<*>>?) {
+    fun appendAdapterItemList(list: ArrayList<BaseAdapterItem<*>>?) {
         if (list != null) {
-            mBaseAdapterItemList !!.addAll(list)
+            mBaseAdapterItemList.addAll(list)
         }
         mIsUpdatingList = false
         notifyDataSetChanged()
@@ -124,7 +130,7 @@ class BaseAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>, BaseViewHolde
      *
      * @param longClickCallback
      */
-    fun setVHLongClickCallback(longClickCallback : BaseViewHolder.VHLongClickable) {
+    fun setVHLongClickCallback(longClickCallback: BaseViewHolder.VHLongClickable) {
         mLongClickCallback = longClickCallback
     }
 
@@ -133,7 +139,7 @@ class BaseAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>, BaseViewHolde
      *
      * @param clickCallback
      */
-    fun setVHClickCallback(clickCallback : BaseViewHolder.VHClickable) {
+    fun setVHClickCallback(clickCallback: BaseViewHolder.VHClickable) {
         mClickCallback = clickCallback
     }
 
@@ -146,5 +152,4 @@ class BaseAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>, BaseViewHolde
          */
         fun onLoadMoreItemListener()
     }
-
 }

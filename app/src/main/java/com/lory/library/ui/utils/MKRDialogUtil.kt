@@ -266,7 +266,12 @@ class MKRDialogUtil {
             alertDialog = null
         }
 
-        fun showLoadingDialog(context: Context) {
+        /**
+         * Method to show the Default Loading Dialog
+         * @param context
+         * @param text
+         */
+        fun showLoadingDialog(context: Context, text: String?) {
             if (alertDialog != null && alertDialog!!.isShowing) {
                 return
             }
@@ -278,6 +283,7 @@ class MKRDialogUtil {
             val layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
             relativeLayout.layoutParams = layoutParams
             val progressView = ProgressView(context)
+            progressView.mTextMessage = text ?: "PROCESSING....."
             val relativeLayoutParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT)
             relativeLayoutParams.addRule(RelativeLayout.CENTER_HORIZONTAL)
             relativeLayoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM)
@@ -289,6 +295,11 @@ class MKRDialogUtil {
             alertDialog!!.show()
         }
 
+        /**
+         * Method to show the custom Loading Dialog
+         * @param context
+         * @param view
+         */
         fun showLoadingDialog(context: Context, view: View) {
             if (alertDialog != null && alertDialog!!.isShowing) {
                 return
@@ -342,18 +353,42 @@ class MKRDialogUtil {
         override fun onStart() {
             super.onStart()
             if (titleTextViewId != -1) {
-                findViewById<TextView>(titleTextViewId).setText(title)
+                val textView = findViewById<TextView>(titleTextViewId)
+                textView.text = title
+                textView.visibility = if (textView.text.toString().trim().isNotEmpty()) {
+                    View.VISIBLE
+                } else {
+                    View.GONE
+                }
             }
             if (messageTextViewId != -1) {
-                findViewById<TextView>(messageTextViewId).setText(message)
+                val textView = findViewById<TextView>(messageTextViewId)
+                textView.text = message
+                textView.visibility = if (textView.text.toString().trim().isNotEmpty()) {
+                    View.VISIBLE
+                } else {
+                    View.GONE
+                }
             }
             if (positiveButtonId != -1) {
-                findViewById<TextView>(positiveButtonId).setOnClickListener(this)
-                findViewById<TextView>(positiveButtonId).setText(positiveText)
+                val textView = findViewById<TextView>(positiveButtonId)
+                textView.setOnClickListener(this)
+                textView.text = positiveText
+                textView.visibility = if (textView.text.toString().trim().isNotEmpty()) {
+                    View.VISIBLE
+                } else {
+                    View.GONE
+                }
             }
             if (negativeButtonId != -1) {
-                findViewById<TextView>(negativeButtonId).setOnClickListener(this)
-                findViewById<TextView>(negativeButtonId).setText(negativeText)
+                val textView = findViewById<TextView>(negativeButtonId)
+                textView.setOnClickListener(this)
+                textView.text = negativeText
+                textView.visibility = if (textView.text.toString().trim().isNotEmpty()) {
+                    View.VISIBLE
+                } else {
+                    View.GONE
+                }
             }
         }
 

@@ -17,9 +17,7 @@ import android.view.View
  */
 class ProgressView : View {
 
-    companion object {
-    }
-
+    var mTextMessage = "Processing"
     private var mRadius: Float = 0.toFloat()
     private val mPaintFill = Paint(Paint.ANTI_ALIAS_FLAG)
     private val mPaint = Paint(Paint.ANTI_ALIAS_FLAG)
@@ -30,7 +28,6 @@ class ProgressView : View {
     private var mDotCount = 4
     private var mStep = 1
     private var mTestSize: Float = 0.toFloat()
-    private var mTextMessage = "Processing"
     private var mIsRunning: Boolean = false
 
     private val mRunnable = object : Runnable {
@@ -92,7 +89,7 @@ class ProgressView : View {
         mPaintFill.color = Color.WHITE
         // dot background color
         mPaint.style = Paint.Style.FILL
-        mPaint.color = 0x44000000
+        mPaint.color = 0x77000000
         // Text paint
         mPaintText.style = Paint.Style.FILL
         mPaintText.color = Color.WHITE
@@ -145,7 +142,7 @@ class ProgressView : View {
             } else {
                 canvas.drawCircle(dX, dY, mRadius, mPaint)
             }
-            dX = dX + (2f * mRadius + mMargin)
+            dX += (2f * mRadius + mMargin)
         }
     }
 }

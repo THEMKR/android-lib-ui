@@ -8,29 +8,25 @@ import android.view.View
  * Created by mkr on 3/4/18.
  */
 abstract class BaseViewHolder<MKR> : RecyclerView.ViewHolder, View.OnClickListener, View.OnLongClickListener {
-    protected var mParent : View? = null
-    private var mClickCallback : VHClickable? = null
-    private var mLongClickCallback : VHLongClickable? = null
-    private var mBaseAdapterItem : BaseAdapterItem<*>? = null
+    protected val mParent: View
+    private var mClickCallback: VHClickable? = null
+    private var mLongClickCallback: VHLongClickable? = null
+    private var mBaseAdapterItem: BaseAdapterItem<*>? = null
+    val context: Context
+        get() {
+            return mParent.context
+        }
 
     /**
      * Constructor
      *
      * @param itemView
      */
-    constructor(itemView : View) : super(itemView) {
+    constructor(itemView: View) : super(itemView) {
         mParent = itemView
     }
 
-    fun getParent() : View {
-        return mParent !!
-    }
-
-    fun getContext() : Context {
-        return mParent !!.getContext()
-    }
-
-    fun bindFeedItem(baseAdapterItem : BaseAdapterItem<*>) {
+    fun bindFeedItem(baseAdapterItem: BaseAdapterItem<*>) {
         mBaseAdapterItem = baseAdapterItem
         bindData((baseAdapterItem as BaseAdapterItem<MKR>).getData())
     }
@@ -39,19 +35,19 @@ abstract class BaseViewHolder<MKR> : RecyclerView.ViewHolder, View.OnClickListen
      * Method called, whenever view bind with Recycler View
      * @param mkr
      */
-    protected abstract fun bindData(mkr : MKR)
+    protected abstract fun bindData(mkr: MKR)
 
-    fun getAdapterItem() : BaseAdapterItem<*> {
-        return mBaseAdapterItem !!
+    fun getAdapterItem(): BaseAdapterItem<*> {
+        return mBaseAdapterItem!!
     }
 
-    override fun onClick(v : View) {
+    override fun onClick(v: View) {
         mClickCallback?.onViewHolderClicked(this, v)
     }
 
-    override fun onLongClick(v : View) : Boolean {
+    override fun onLongClick(v: View): Boolean {
         if (mLongClickCallback != null) {
-            mLongClickCallback !!.onViewHolderLongClicked(this, v)
+            mLongClickCallback!!.onViewHolderLongClicked(this, v)
             return true
         }
         return false
@@ -62,7 +58,7 @@ abstract class BaseViewHolder<MKR> : RecyclerView.ViewHolder, View.OnClickListen
      *
      * @param callback
      */
-    fun setVHClickCallback(callback : VHClickable) {
+    fun setVHClickCallback(callback: VHClickable) {
         mClickCallback = callback
     }
 
@@ -71,7 +67,7 @@ abstract class BaseViewHolder<MKR> : RecyclerView.ViewHolder, View.OnClickListen
      *
      * @param callback
      */
-    fun setVHLongClickCallback(callback : VHLongClickable) {
+    fun setVHLongClickCallback(callback: VHLongClickable) {
         mLongClickCallback = callback
     }
 
@@ -86,7 +82,7 @@ abstract class BaseViewHolder<MKR> : RecyclerView.ViewHolder, View.OnClickListen
          * @param holder
          * @param view
          */
-        fun onViewHolderClicked(holder : BaseViewHolder<*>, view : View)
+        fun onViewHolderClicked(holder: BaseViewHolder<*>, view: View)
     }
 
     /**
@@ -99,6 +95,6 @@ abstract class BaseViewHolder<MKR> : RecyclerView.ViewHolder, View.OnClickListen
          * @param holder
          * @param view
          */
-        fun onViewHolderLongClicked(holder : BaseViewHolder<*>, view : View)
+        fun onViewHolderLongClicked(holder: BaseViewHolder<*>, view: View)
     }
 }
