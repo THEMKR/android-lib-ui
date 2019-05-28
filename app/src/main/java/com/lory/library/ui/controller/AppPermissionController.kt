@@ -9,7 +9,7 @@ import android.widget.Toast
 /**
  * Created by delhivery on 4/7/16.
  */
-class AppPermissionController {
+open class AppPermissionController {
     private val permission: Array<String>
     private val mActivity: Activity
     private val mOnAppPermissionControllerListener: OnAppPermissionControllerListener

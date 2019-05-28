@@ -9,7 +9,7 @@ import java.util.*
 /**
  * Created by mkr on 3/4/18.
  */
-class BaseAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>, BaseViewHolder.VHClickable, BaseViewHolder.VHLongClickable {
+open class BaseAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>, BaseViewHolder.VHClickable, BaseViewHolder.VHLongClickable {
     private val mBaseAdapterItemList: ArrayList<BaseAdapterItem<*>> = ArrayList()
     private var mLongClickCallback: BaseViewHolder.VHLongClickable? = null
     private var mClickCallback: BaseViewHolder.VHClickable? = null

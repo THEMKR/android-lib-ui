@@ -8,7 +8,7 @@ import android.util.AttributeSet
  * Created by A1ZFKXA3 on 8/21/2017.
  */
 
-class MKRViewPager : ViewPager {
+open class MKRViewPager : ViewPager {
     private var mOnPageChangeListener: OnPageChangeListener? = null
 
     constructor(context: Context) : super(context) {}

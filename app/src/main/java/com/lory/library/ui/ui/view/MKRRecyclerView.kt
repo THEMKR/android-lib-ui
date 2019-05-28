@@ -8,7 +8,7 @@ import android.util.AttributeSet
  * Created by A1ZFKXA3 on 8/21/2017.
  */
 
-class MKRRecyclerView : RecyclerView {
+open class MKRRecyclerView : RecyclerView {
     private var mOldOnScrollListener: RecyclerView.OnScrollListener? = null
 
     constructor(context: Context) : super(context) {}
