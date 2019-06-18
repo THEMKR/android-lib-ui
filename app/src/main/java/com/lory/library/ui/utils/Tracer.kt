@@ -1,10 +1,15 @@
 package com.lory.library.ui.utils
 
 import android.content.Context
+import android.graphics.Color
 import android.os.Environment
+import android.support.design.widget.Snackbar
+import android.support.v4.content.ContextCompat
 import android.util.Log
 import android.view.Gravity
+import android.view.View
 import android.widget.Toast
+import com.lory.library.ui.R
 import java.io.BufferedWriter
 import java.io.File
 import java.io.FileWriter
@@ -113,6 +118,39 @@ class Tracer {
             val toast = Toast.makeText(context, text, Toast.LENGTH_LONG)
             toast.setGravity(Gravity.BOTTOM or Gravity.CENTER, 0, 0)
             toast.show()
+        }
+
+        /**
+         * Show SNACK<br></br>
+         *
+         * @param view The view to find NewsAdapterItemHandler mParent from.
+         * @param text The text to show.  Can be formatted text.
+         */
+        fun showSuccessSnack(view: View, text: String) {
+            val snack = Snackbar.make(view, text, Snackbar.LENGTH_LONG)
+            snack.view.setBackgroundColor(ContextCompat.getColor(view.context, R.color.snack_success))
+            snack.setActionTextColor(Color.WHITE)
+            snack.show()
+        }
+
+        /**
+         * Show SNACK<br></br>
+         *
+         * @param view The view to find NewsAdapterItemHandler mParent from.
+         * @param text The text to show.  Can be formatted text.
+         */
+        fun showSnack(view: View, text: String) {
+            Snackbar.make(view, text, Snackbar.LENGTH_LONG).show()
+        }
+
+        /**
+         * Show SNACK<br></br>
+         *
+         * @param view      The view to find NewsAdapterItemHandler mParent from.
+         * @param textResId The text Res Id to show.
+         */
+        fun showSnack(view: View, textResId: Int) {
+            Snackbar.make(view, textResId, Snackbar.LENGTH_LONG).show()
         }
     }
 }
