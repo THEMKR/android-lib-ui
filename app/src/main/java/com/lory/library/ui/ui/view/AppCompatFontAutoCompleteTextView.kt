@@ -2,10 +2,8 @@ package com.lory.library.ui.ui.view
 
 import android.content.Context
 import android.graphics.Typeface
-import android.os.Build
-import android.support.annotation.RequiresApi
-import android.support.v7.widget.AppCompatAutoCompleteTextView
 import android.util.AttributeSet
+import androidx.appcompat.widget.AppCompatAutoCompleteTextView
 import com.lory.library.ui.R
 
 class AppCompatFontAutoCompleteTextView : AppCompatAutoCompleteTextView {

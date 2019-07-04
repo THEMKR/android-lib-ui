@@ -26,9 +26,9 @@ import android.net.Uri
 import android.os.Binder
 import android.os.Build
 import android.os.IBinder
-import android.support.customtabs.CustomTabsIntent
 import android.text.TextUtils
 import android.util.Log
+import androidx.browser.customtabs.CustomTabsIntent
 import java.util.*
 
 /**
@@ -42,7 +42,7 @@ class CustomWebHelper {
         private val LOCAL_PACKAGE = "com.google.android.apps.chrome"
         private val EXTRA_CUSTOM_TABS_KEEP_ALIVE = "android.support.customtabs.extra.KEEP_ALIVE"
         private val ACTION_CUSTOM_TABS_CONNECTION = "android.support.customtabs.action.CustomTabsService"
-        private var sPackageNameToUse : String? = null
+        private var sPackageNameToUse: String? = null
 
         /**
          * |
@@ -51,15 +51,15 @@ class CustomWebHelper {
          * @param context
          * @param intent
          */
-        fun addKeepAliveExtra(context : Context, intent : Intent) {
-            val keepAliveIntent = Intent().setClassName(context.packageName, KeepAliveService::class.qualifiedName)
+        fun addKeepAliveExtra(context: Context, intent: Intent) {
+            val keepAliveIntent = Intent().setClassName(context, KeepAliveService::class.qualifiedName ?: "")
             intent?.putExtra(EXTRA_CUSTOM_TABS_KEEP_ALIVE, keepAliveIntent)
         }
 
         /**
          * @return All possible chrome package names that provide custom tabs feature.
          */
-        val packages : Array<String>
+        val packages: Array<String>
             get() = arrayOf("", STABLE_PACKAGE, BETA_PACKAGE, DEV_PACKAGE, LOCAL_PACKAGE)
 
 
@@ -74,14 +74,14 @@ class CustomWebHelper {
          * @param context [Context] to use for accessing [PackageManager].
          * @return The package name recommended to use for connecting to custom tabs related components.
          */
-        fun getPackageNameToUse(context : Context) : String? {
+        fun getPackageNameToUse(context: Context): String? {
             if (sPackageNameToUse != null) return sPackageNameToUse
 
             val pm = context.packageManager
             // Get default VIEW intent handler.
             val activityIntent = Intent(Intent.ACTION_VIEW, Uri.parse("http://www.example.com"))
             val defaultViewHandlerInfo = pm.resolveActivity(activityIntent, 0)
-            var defaultViewHandlerPackageName : String? = null
+            var defaultViewHandlerPackageName: String? = null
             if (defaultViewHandlerInfo != null) {
                 defaultViewHandlerPackageName = defaultViewHandlerInfo.activityInfo.packageName
             }
@@ -104,7 +104,7 @@ class CustomWebHelper {
                 sPackageNameToUse = null
             } else if (packagesSupportingCustomTabs.size == 1) {
                 sPackageNameToUse = packagesSupportingCustomTabs[0]
-            } else if (! TextUtils.isEmpty(defaultViewHandlerPackageName) && !hasSpecializedHandlerIntents(context, activityIntent) && packagesSupportingCustomTabs.contains(defaultViewHandlerPackageName!!)) {
+            } else if (!TextUtils.isEmpty(defaultViewHandlerPackageName) && !hasSpecializedHandlerIntents(context, activityIntent) && packagesSupportingCustomTabs.contains(defaultViewHandlerPackageName!!)) {
                 sPackageNameToUse = defaultViewHandlerPackageName
             } else if (packagesSupportingCustomTabs.contains(STABLE_PACKAGE)) {
                 sPackageNameToUse = STABLE_PACKAGE
@@ -124,7 +124,7 @@ class CustomWebHelper {
          * @param intent The intent to check with.
          * @return Whether there is a specialized handler for the given intent.
          */
-        private fun hasSpecializedHandlerIntents(context : Context, intent : Intent) : Boolean {
+        private fun hasSpecializedHandlerIntents(context: Context, intent: Intent): Boolean {
             try {
                 val pm = context.packageManager
                 val handlers = pm.queryIntentActivities(intent, PackageManager.GET_RESOLVED_FILTER)
@@ -137,7 +137,7 @@ class CustomWebHelper {
                     if (resolveInfo.activityInfo == null) continue
                     return true
                 }
-            } catch (e : RuntimeException) {
+            } catch (e: RuntimeException) {
                 Log.e("MKR", "Runtime exception while getting specialized handlers")
             }
 
@@ -153,7 +153,7 @@ class CustomWebHelper {
          * @param uri              the Uri to be opened
          * @param fallback         a CustomWebFallback to be used if Custom Tabs is not available
          */
-        fun openCustomWeb(context : Activity, customTabsIntent : CustomTabsIntent, uri : Uri, fallback : CustomWebFallback?) {
+        fun openCustomWeb(context: Activity, customTabsIntent: CustomTabsIntent, uri: Uri, fallback: CustomWebFallback?) {
             val packageName = getPackageNameToUse(context)
             if (packageName == null) {
                 fallback?.openUri(context, uri)
@@ -172,7 +172,7 @@ class CustomWebHelper {
          * @param context
          * @param url     pass the url which need to be open
          */
-        fun openCustomChrome(context : Context, url : String) {
+        fun openCustomChrome(context: Context, url: String) {
             // Use a CustomTabsIntent.Builder to configure CustomTabsIntent.
             val builder = CustomTabsIntent.Builder()
             // set toolbar color and/or setting custom actions before invoking build()
@@ -191,7 +191,7 @@ class CustomWebHelper {
          * @param context The Activity that wants to open the Uri
          * @param uri     The uri to be opened by the fallback
          */
-        fun openUri(context : Context, uri : Uri)
+        fun openUri(context: Context, uri: Uri)
     }
 
     /**
@@ -199,7 +199,7 @@ class CustomWebHelper {
      */
     class KeepAliveService : Service() {
 
-        override fun onBind(intent : Intent) : IBinder? {
+        override fun onBind(intent: Intent): IBinder? {
             return sBinder
         }
 

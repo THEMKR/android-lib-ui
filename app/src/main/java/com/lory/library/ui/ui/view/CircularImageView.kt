@@ -3,9 +3,9 @@ package com.lory.library.ui.ui.view
 import android.content.Context
 import android.graphics.*
 import android.os.Build
-import android.support.annotation.RequiresApi
 import android.util.AttributeSet
 import android.view.View
+import androidx.annotation.RequiresApi
 import com.lory.library.ui.R
 
 /**
@@ -45,7 +45,8 @@ class CircularImageView : View {
         init(attrs)
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP) constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int, defStyleRes: Int) : super(context, attrs, defStyleAttr, defStyleRes) {
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int, defStyleRes: Int) : super(context, attrs, defStyleAttr, defStyleRes) {
         init(attrs)
     }
 

@@ -3,8 +3,8 @@ package com.lory.library.ui.ui.view
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.Rect
-import android.support.v7.widget.RecyclerView
 import android.view.View
+import androidx.recyclerview.widget.RecyclerView
 
 class GridSpacingItemDecoration : RecyclerView.ItemDecoration {
     private val paint: Paint = Paint()

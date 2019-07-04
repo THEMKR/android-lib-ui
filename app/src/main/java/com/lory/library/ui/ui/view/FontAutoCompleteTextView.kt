@@ -3,9 +3,9 @@ package com.lory.library.ui.ui.view
 import android.content.Context
 import android.graphics.Typeface
 import android.os.Build
-import android.support.annotation.RequiresApi
 import android.util.AttributeSet
 import android.widget.AutoCompleteTextView
+import androidx.annotation.RequiresApi
 import com.lory.library.ui.R
 
 class FontAutoCompleteTextView : AutoCompleteTextView {

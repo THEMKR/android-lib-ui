@@ -1,8 +1,8 @@
 package com.lory.library.ui.ui.view
 
 import android.content.Context
-import android.support.v4.view.ViewPager
 import android.util.AttributeSet
+import androidx.viewpager.widget.ViewPager
 
 /**
  * Created by A1ZFKXA3 on 8/21/2017.

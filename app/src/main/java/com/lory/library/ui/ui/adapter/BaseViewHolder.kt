@@ -1,8 +1,8 @@
 package com.lory.library.ui.ui.adapter
 
 import android.content.Context
-import android.support.v7.widget.RecyclerView
 import android.view.View
+import androidx.recyclerview.widget.RecyclerView
 
 /**
  * Created by mkr on 3/4/18.
