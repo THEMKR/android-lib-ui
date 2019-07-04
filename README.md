@@ -2,9 +2,7 @@
 
 #	Project Level Gradle
 		repositories {
-			maven {
-				url 'https://dl.google.com/dl/android/maven2'
-			}
+			maven { url 'https://jitpack.io' }
 		}
 
 #	APP Level Gradle
