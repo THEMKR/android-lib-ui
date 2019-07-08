@@ -7,7 +7,7 @@
 
 #	APP Level Gradle
 
-        implementation 'com.github.THEMKR:android-lib-ui:1.0.0'
+        implementation 'com.github.THEMKR:android-lib-ui:1.0.1'
 	
 	<!-- DEPENDENCY INCLUDE IN LIB -->
 	implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
