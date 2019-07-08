@@ -23,6 +23,9 @@ abstract class MKRAppcompatActivity : AppCompatActivity(), OnBaseActivityListene
     private var lastCallTime: Long = System.currentTimeMillis()
     private val PERMISSION_RESULT_THRASH_HOLD: Long = 250
 
+    /**
+     * If user add the permission the user must call [checkAndCallPermission] manually in code. Else user call [init] manually
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         //Tracer.LOG_ENABLE = true
         Tracer.debug(TAG, "onCreate: ")
@@ -34,7 +37,11 @@ abstract class MKRAppcompatActivity : AppCompatActivity(), OnBaseActivityListene
 
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
-        init(intent)
+        if(getRequiredPermissions().size>0){
+            checkAndCallPermission()
+        }else{
+            init(intent)
+        }
     }
 
     override fun onBackPressed() {
@@ -49,7 +56,7 @@ abstract class MKRAppcompatActivity : AppCompatActivity(), OnBaseActivityListene
             (fragment as OnBaseFragmentListener).onPopFromBackStack()
         }
         if (supportFragmentManager.backStackEntryCount <= 0) {
-            finish()
+            finishActivity()
         }
     }
 
@@ -144,6 +151,11 @@ abstract class MKRAppcompatActivity : AppCompatActivity(), OnBaseActivityListene
      * Method to get the ID of the Activity Layout
      */
     abstract fun getActivityLayoutId(): Int
+
+    /**
+     * Method to finish the activity if there is no more fragment in back stak
+     */
+    abstract fun finishActivity()
 
     /**
      * Method to get the array of the required permission
