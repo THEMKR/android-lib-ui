@@ -1,6 +1,5 @@
 package com.lory.library.ui.utils
 
-import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Context
 import android.content.DialogInterface
@@ -13,6 +12,7 @@ import android.view.ViewGroup
 import android.view.Window
 import android.widget.RelativeLayout
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import com.lory.library.ui.ui.view.ProgressView
 
 
