@@ -57,7 +57,10 @@ class MKRDialogUtil {
                 onOkClickListener?.onClick(dialog, which)
             }
             alertDialog.setCancelable(cancellable)
-            return alertDialog.show()
+            val dialog = alertDialog.create()
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+            dialog.show()
+            return dialog
         }
 
         /**
@@ -93,6 +96,7 @@ class MKRDialogUtil {
             customDialog.positiveButtonId = okTextViewId
             customDialog.positiveText = okText
             customDialog.onOkClickListener = onOkClickListener
+            customDialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
             customDialog.setCancelable(cancellable)
             alertDialog = customDialog
             alertDialog!!.show()
@@ -136,7 +140,10 @@ class MKRDialogUtil {
                 onCancelClickListener?.onClick(dialog, which)
             }
             alertDialog.setCancelable(cancellable)
-            return alertDialog.show()
+            val dialog = alertDialog.create()
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+            dialog.show()
+            return dialog
         }
 
         /**
@@ -179,6 +186,7 @@ class MKRDialogUtil {
             customDialog.negativeText = cancelText
             customDialog.onCancelClickListener = onCancelClickListener
             customDialog.setCancelable(cancellable)
+            customDialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
             alertDialog = customDialog
             alertDialog!!.show()
             return alertDialog!!
