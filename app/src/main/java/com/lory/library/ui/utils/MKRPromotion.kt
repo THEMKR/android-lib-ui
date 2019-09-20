@@ -68,7 +68,6 @@ class MKRPromotion {
          * @param shareMessage
          * @param shareUrl
          */
-        @JvmOverloads
         fun getShareIntent(appName: String, shareMessage: String, shareUrl: String): Intent {
             val message = shareMessage + "\n\n" + shareUrl
             val intent = Intent(Intent.ACTION_SEND)
@@ -96,7 +95,7 @@ class MKRPromotion {
          * @return http://play.google.com/store/apps/details?id=pkg&referrer=ref
          */
         fun getShareAppUrl(context: Context, referrer: String): String {
-            return getShareAppUrl(context) + if (referrer != null && !referrer.trim().isEmpty()) {
+            return getShareAppUrl(context) + if (!referrer.trim().isEmpty()) {
                 "&referrer=$referrer"
             } else {
                 ""

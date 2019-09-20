@@ -17,10 +17,10 @@ class VerticalSpaceItemDecoration : RecyclerView.ItemDecoration {
      * @param verticalSpacing
      */
     constructor(spacing: Int, dividerColor: Int) {
-        paint!!.isAntiAlias = true
-        paint!!.isFilterBitmap = true
-        paint!!.color = dividerColor
-        paint!!.strokeWidth = spacing.toFloat()
+        paint.isAntiAlias = true
+        paint.isFilterBitmap = true
+        paint.color = dividerColor
+        paint.strokeWidth = spacing.toFloat()
         this.spacing = spacing
 
     }
@@ -35,10 +35,12 @@ class VerticalSpaceItemDecoration : RecyclerView.ItemDecoration {
         val hX2 = parent.width - parent.paddingRight
         val childCount = parent.childCount
         for (i in 0 until childCount) {
-            val child = parent.getChildAt(i)
-            val params = child.layoutParams as RecyclerView.LayoutParams
-            val y = child.bottom + params.bottomMargin + (spacing!! shr 1)
-            c.drawLine(hX1.toFloat(), y.toFloat(), hX2.toFloat(), y.toFloat(), paint)
+            if (i < (childCount - 1)) {
+                val child = parent.getChildAt(i)
+                val params = child.layoutParams as RecyclerView.LayoutParams
+                val y = child.bottom + params.bottomMargin + (spacing shr 1)
+                c.drawLine(hX1.toFloat(), y.toFloat(), hX2.toFloat(), y.toFloat(), paint)
+            }
         }
     }
 }

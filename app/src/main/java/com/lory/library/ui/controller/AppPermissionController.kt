@@ -31,10 +31,9 @@ open class AppPermissionController {
      * Method to called from this method of Activity
      *
      * @param requestCode
-     * @param permissions
      * @param grantResults
      */
-    fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>?, grantResults: IntArray) {
+    fun onRequestPermissionsResult(requestCode: Int, grantResults: IntArray) {
         when (requestCode) {
             REQUEST_PERMISSION -> {
                 if (!(grantResults.size > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
@@ -43,7 +42,7 @@ open class AppPermissionController {
             }
         }
         if (isHaveAllRequiredPermission()) {
-            mOnAppPermissionControllerListener?.onAppPermissionControllerListenerHaveAllRequiredPermission()
+            mOnAppPermissionControllerListener.onAppPermissionControllerListenerHaveAllRequiredPermission()
         }
     }
 
@@ -54,8 +53,8 @@ open class AppPermissionController {
      */
     fun isHaveAllRequiredPermission(): Boolean {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            for (permission in permission!!) {
-                if (mActivity!!.checkSelfPermission(permission) != PackageManager.PERMISSION_GRANTED) {
+            for (permission in permission) {
+                if (mActivity.checkSelfPermission(permission) != PackageManager.PERMISSION_GRANTED) {
                     return false
                 }
             }
@@ -70,12 +69,12 @@ open class AppPermissionController {
      */
     fun requestPermission() {
         if (isHaveAllRequiredPermission()) {
-            mOnAppPermissionControllerListener?.onAppPermissionControllerListenerHaveAllRequiredPermission()
+            mOnAppPermissionControllerListener.onAppPermissionControllerListenerHaveAllRequiredPermission()
             return
         }
         // CALL PERMISSION
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            mActivity!!.requestPermissions(permission, REQUEST_PERMISSION)
+            mActivity.requestPermissions(permission, REQUEST_PERMISSION)
         }
     }
 

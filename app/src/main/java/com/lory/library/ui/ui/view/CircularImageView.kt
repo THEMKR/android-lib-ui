@@ -247,7 +247,6 @@ class CircularImageView : View {
         val bitmapFinal = Bitmap.createBitmap(destDim.toInt(), destDim.toInt(), Bitmap.Config.ARGB_8888)
         val canvas = Canvas(bitmapFinal)
         canvas.drawColor(Color.argb(0, 0, 0, 0))
-        val rectF = RectF(0f, 0f, destDim.toInt().toFloat(), destDim.toInt().toFloat())
         val paint = Paint(Paint.ANTI_ALIAS_FLAG or Paint.FILTER_BITMAP_FLAG)
         canvas.drawArc(RectF(0f, 0f, destDim.toInt().toFloat(), destDim.toInt().toFloat()), 0f, 360f, true, paint)
         paint.xfermode = PorterDuffXfermode(PorterDuff.Mode.SRC_IN)

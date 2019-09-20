@@ -46,13 +46,12 @@ class EditTextDropDown : FontEditText {
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        var width = 0
         val measureText = paint.measureText(text.toString()).toInt()
         val writableWidth = getWidth() - paddingRight - paddingLeft
-        if (measureText > writableWidth) {
-            width = paddingLeft + measureText
+        var width = if (measureText > writableWidth) {
+            paddingLeft + measureText
         } else {
-            width = paddingLeft + writableWidth
+            paddingLeft + writableWidth
         }
         mPath!!.reset()
         val x1 = width + (mArrowSize shr 1)

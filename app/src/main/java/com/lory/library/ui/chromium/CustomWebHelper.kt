@@ -53,7 +53,7 @@ class CustomWebHelper {
          */
         fun addKeepAliveExtra(context: Context, intent: Intent) {
             val keepAliveIntent = Intent().setClassName(context, KeepAliveService::class.qualifiedName ?: "")
-            intent?.putExtra(EXTRA_CUSTOM_TABS_KEEP_ALIVE, keepAliveIntent)
+            intent.putExtra(EXTRA_CUSTOM_TABS_KEEP_ALIVE, keepAliveIntent)
         }
 
         /**

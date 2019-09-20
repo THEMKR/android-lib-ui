@@ -32,7 +32,7 @@ open class FontEditText : EditText {
     private fun init(attrs: AttributeSet?) {
         if (attrs != null) {
             val a = context.obtainStyledAttributes(attrs, R.styleable.FontEditText, 0, 0)
-            var typeFace: String? = a?.getString(R.styleable.FontEditText_edit_text_face)
+            var typeFace: String? = a.getString(R.styleable.FontEditText_edit_text_face)
             if (typeFace != null) {
                 typeface = Typeface.createFromAsset(context.assets, typeFace)
             }

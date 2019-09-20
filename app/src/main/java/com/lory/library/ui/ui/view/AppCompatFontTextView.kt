@@ -28,7 +28,7 @@ open class AppCompatFontTextView : AppCompatTextView {
     private fun init(attrs: AttributeSet?) {
         if (attrs != null) {
             val a = context.obtainStyledAttributes(attrs, R.styleable.FontTextView, 0, 0)
-            var typeFace: String? = a?.getString(R.styleable.AppCompatFontTextView_app_compat_text_view_face)
+            var typeFace: String? = a.getString(R.styleable.AppCompatFontTextView_app_compat_text_view_face)
             if (typeFace != null) {
                 typeface = Typeface.createFromAsset(context.assets, typeFace)
             }

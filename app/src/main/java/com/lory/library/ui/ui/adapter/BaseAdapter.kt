@@ -40,7 +40,7 @@ open class BaseAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>, BaseView
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
                 if (!mIsUpdatingList) {
-                    if (recyclerView!!.childCount > 1) {
+                    if (recyclerView.childCount > 1) {
                         val childAdapterPosition = recyclerView.getChildAdapterPosition(recyclerView.getChildAt(recyclerView.childCount - 1))
                         if (childAdapterPosition >= mBaseAdapterItemList.size - 1) {
                             mIsUpdatingList = true

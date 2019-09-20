@@ -69,7 +69,7 @@ abstract class MKRAppcompatActivity : AppCompatActivity(), OnBaseActivityListene
             return
         }
         lastCallTime = System.currentTimeMillis()
-        appPermissionController?.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        appPermissionController?.onRequestPermissionsResult(requestCode, grantResults)
     }
 
     override fun onAppPermissionControllerListenerHaveAllRequiredPermission() {

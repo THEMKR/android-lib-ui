@@ -26,7 +26,7 @@ class AppCompatFontAutoCompleteTextView : AppCompatAutoCompleteTextView {
     private fun init(attrs: AttributeSet?) {
         if (attrs != null) {
             val a = context.obtainStyledAttributes(attrs, R.styleable.AppCompatFontAutoCompleteTextView, 0, 0)
-            var typeFace: String? = a?.getString(R.styleable.AppCompatFontAutoCompleteTextView_app_compat_auto_complete_text_view_face)
+            var typeFace: String? = a.getString(R.styleable.AppCompatFontAutoCompleteTextView_app_compat_auto_complete_text_view_face)
             if (typeFace != null) {
                 typeface = Typeface.createFromAsset(context.assets, typeFace)
             }
