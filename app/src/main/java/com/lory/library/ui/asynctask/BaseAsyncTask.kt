@@ -1,4 +1,5 @@
 package com.lory.library.ui.asynctask
+
 import android.content.Context
 import android.os.AsyncTask
 
@@ -32,21 +33,14 @@ abstract class BaseAsyncTask<MKR, PROGRESS> {
     /**
      * Method to Execute before the asyncTask start background execution
      */
-    protected fun preExecute() {
+    protected open fun asyncPreExecute() {
         // Do whatever you want to
-    }
-
-    /**
-     * Method to publish the Progress Of execution, This will called from Only doInBackground()
-     */
-    protected fun publishProgress(progress: PROGRESS) {
-        asyncTask?.publishProgressUpdate(progress)
     }
 
     /**
      * Method to Execute after the asyncTask response
      */
-    protected fun postExecute(mkr: MKR?): MKR? {
+    protected open fun asyncPostExecute(mkr: MKR?): MKR? {
         return mkr
     }
 
@@ -61,7 +55,7 @@ abstract class BaseAsyncTask<MKR, PROGRESS> {
     private inner class MKRAsynctask : AsyncTask<Void, PROGRESS, MKR>() {
         override fun onPreExecute() {
             super.onPreExecute()
-            this@BaseAsyncTask.preExecute()
+            this@BaseAsyncTask.asyncPreExecute()
         }
 
         override fun doInBackground(vararg voids: Void): MKR? {
@@ -71,17 +65,13 @@ abstract class BaseAsyncTask<MKR, PROGRESS> {
         override fun onProgressUpdate(vararg values: PROGRESS) {
             super.onProgressUpdate(*values)
             if (values.isNotEmpty() && values[0] != null) {
-                asyncCallBack?.onProgress(values[0])
+                this@BaseAsyncTask.asyncCallBack?.onProgress(values[0])
             }
         }
 
         override fun onPostExecute(mkr: MKR?) {
             super.onPostExecute(mkr)
-            asyncCallBack?.onSuccess(this@BaseAsyncTask.postExecute(mkr))
-        }
-
-        fun publishProgressUpdate(progress: PROGRESS) {
-            publishProgress(progress)
+            asyncCallBack?.onSuccess(this@BaseAsyncTask.asyncPostExecute(mkr))
         }
     }
 }
