@@ -50,7 +50,7 @@ abstract class BaseAsyncTask<MKR, PROGRESS> {
      * @param result
      * @return
      */
-    protected abstract fun doInBackground(): MKR
+    protected abstract fun doInBackground(asyncTask : AsyncTask<Void, PROGRESS, MKR>): MKR
 
     private inner class MKRAsynctask : AsyncTask<Void, PROGRESS, MKR>() {
         override fun onPreExecute() {
@@ -59,7 +59,7 @@ abstract class BaseAsyncTask<MKR, PROGRESS> {
         }
 
         override fun doInBackground(vararg voids: Void): MKR? {
-            return this@BaseAsyncTask.doInBackground()
+            return this@BaseAsyncTask.doInBackground(this)
         }
 
         override fun onProgressUpdate(vararg values: PROGRESS) {
