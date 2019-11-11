@@ -6,10 +6,10 @@ import android.os.AsyncTask
 /**
  * Created by mkr on 3/4/18.
  */
-abstract class BaseAsyncTask<MKR, PROGRESS> {
+abstract class BaseAsyncTask<MKR, PROGRESS> : AsyncTask<Void, PROGRESS, MKR> {
+
     protected var asyncCallBack: AsyncCallBack<MKR, PROGRESS>? = null
     protected val context: Context
-    private var asyncTask: MKRAsynctask? = null
 
     /**
      * Constructor
@@ -17,45 +17,41 @@ abstract class BaseAsyncTask<MKR, PROGRESS> {
      * @param context
      * @param asyncCallBack
      */
-    constructor(context: Context, asyncCallBack: AsyncCallBack<MKR, PROGRESS>?) {
+    constructor(context: Context, asyncCallBack: AsyncCallBack<MKR, PROGRESS>?) : super() {
         this.context = context;
         this.asyncCallBack = asyncCallBack;
     }
 
     /**
-     * Method to Execute the network call.<br></br>This Method is run on back thread
+     * Method to START the task
      */
     fun executeTask() {
-        asyncTask = MKRAsynctask()
-        asyncTask?.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR)
+        executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR)
     }
 
     /**
-     * Method to Execute before the asyncTask start background execution
+     * USER SHOULD NOT OVER RIDE THIS METHOD
      */
-    protected open fun asyncPreExecute() {
-        // Do whatever you want to
+    override fun doInBackground(vararg voids: Void): MKR? {
+        return this@BaseAsyncTask.doInBackground()
     }
 
     /**
-     * Method to Execute the progress update. Callback is send after the completion of this method
+     * USER MUST CALL THE SUPER
      */
-    protected open fun asyncProgressUpdate(vararg values: PROGRESS) {
-
+    override fun onProgressUpdate(vararg values: PROGRESS) {
+        super.onProgressUpdate(*values)
+        if (values.isNotEmpty() && values[0] != null) {
+            this@BaseAsyncTask.asyncCallBack?.onProgress(values[0])
+        }
     }
 
     /**
-     * Method to send the progress value to the AsyncTask. Call from [doInBackground] life only
+     * USER MUST CALL THE SUPER
      */
-    protected fun sendProgress(value: PROGRESS) {
-        asyncTask?.progressUpdate(value)
-    }
-
-    /**
-     * Method to Execute after the asyncTask response
-     */
-    protected open fun asyncPostExecute(mkr: MKR?): MKR? {
-        return mkr
+    override fun onPostExecute(mkr: MKR?) {
+        super.onPostExecute(mkr)
+        asyncCallBack?.onSuccess(mkr)
     }
 
     /**
@@ -65,35 +61,4 @@ abstract class BaseAsyncTask<MKR, PROGRESS> {
      * @return
      */
     protected abstract fun doInBackground(): MKR
-
-    private inner class MKRAsynctask : AsyncTask<Void, PROGRESS, MKR>() {
-        override fun onPreExecute() {
-            super.onPreExecute()
-            this@BaseAsyncTask.asyncPreExecute()
-        }
-
-        override fun doInBackground(vararg voids: Void): MKR? {
-            return this@BaseAsyncTask.doInBackground()
-        }
-
-        override fun onProgressUpdate(vararg values: PROGRESS) {
-            super.onProgressUpdate(*values)
-            this@BaseAsyncTask.asyncProgressUpdate(*values)
-            if (values.isNotEmpty() && values[0] != null) {
-                this@BaseAsyncTask.asyncCallBack?.onProgress(values[0])
-            }
-        }
-
-        /**
-         * Method to send the progress update call to asynctask
-         */
-        fun progressUpdate(value: PROGRESS) {
-            progressUpdate(value)
-        }
-
-        override fun onPostExecute(mkr: MKR?) {
-            super.onPostExecute(mkr)
-            asyncCallBack?.onSuccess(this@BaseAsyncTask.asyncPostExecute(mkr))
-        }
-    }
 }
