@@ -17,20 +17,13 @@ abstract class BaseBlockAsyncTask<MKR, PROGRESS> : BaseAsyncTask<MKR, PROGRESS> 
     constructor(context: Context, asyncCallBack: AsyncCallBack<MKR, PROGRESS>?) : super(context, asyncCallBack) {
     }
 
-    /**
-     * Method to remove the loopingLock
-     */
-    @Synchronized
-    protected fun stopTaskLoopingLock() {
-        isExecutionLock = false
-    }
 
     /**
-     * Method to init the loopingLock but but user must call [startTaskLoopingLock] to start the lock
+     * Method to set the value of lock
      */
     @Synchronized
-    protected fun setTaskLoopingLock() {
-        isExecutionLock = true
+    protected fun setLock(isExecutionLock: Boolean) {
+        this.isExecutionLock = isExecutionLock
     }
 
     /**
@@ -42,14 +35,14 @@ abstract class BaseBlockAsyncTask<MKR, PROGRESS> : BaseAsyncTask<MKR, PROGRESS> 
     }
 
     /**
-     * Function used to block the call. User must call [setTaskLoopingLock] before calling this method.
-     * It return only when task is [stopTaskLoopingLock] called
+     * Function used to block the call. User must call [setLock] TRUE before calling this method.
+     * It return only when task is [setLock] FALSE
      */
     @Synchronized
-    protected fun startTaskLoopingLock() {
+    protected fun loopLock() {
         while (isTaskLock()) {
             try {
-                Thread.sleep(10)
+                Thread.sleep(50)
             } catch (e: Exception) {
 
             }
