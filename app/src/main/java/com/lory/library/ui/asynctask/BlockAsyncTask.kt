@@ -23,7 +23,7 @@ abstract class BaseBlockAsyncTask<MKR, PROGRESS> : BaseAsyncTask<MKR, PROGRESS> 
      * Method to set the value of lock
      */
     protected fun setLock(isExecutionLock: Boolean) {
-        synchronized(this) {
+        synchronized(any) {
             this.isExecutionLock = isExecutionLock
         }
     }
@@ -32,7 +32,7 @@ abstract class BaseBlockAsyncTask<MKR, PROGRESS> : BaseAsyncTask<MKR, PROGRESS> 
      * Method to check weather the isExecutionLock is enable of disable.
      */
     protected fun isTaskLock(): Boolean {
-        synchronized(this) {
+        synchronized(any) {
             return isExecutionLock
         }
     }
