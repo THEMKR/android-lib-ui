@@ -41,7 +41,14 @@ abstract class BaseAsyncTask<MKR, PROGRESS> {
      * Method to Execute the progress update. Callback is send after the completion of this method
      */
     protected open fun asyncProgressUpdate(vararg values: PROGRESS) {
-        // Do whatever you want to
+
+    }
+
+    /**
+     * Method to send the progress value to the AsyncTask. Call from [doInBackground] life only
+     */
+    protected fun sendProgress(value: PROGRESS) {
+        asyncTask?.progressUpdate(value)
     }
 
     /**
@@ -57,7 +64,7 @@ abstract class BaseAsyncTask<MKR, PROGRESS> {
      * @param result
      * @return
      */
-    protected abstract fun doInBackground(asyncTask: AsyncTask<Void, PROGRESS, MKR>): MKR
+    protected abstract fun doInBackground(): MKR
 
     private inner class MKRAsynctask : AsyncTask<Void, PROGRESS, MKR>() {
         override fun onPreExecute() {
@@ -66,7 +73,7 @@ abstract class BaseAsyncTask<MKR, PROGRESS> {
         }
 
         override fun doInBackground(vararg voids: Void): MKR? {
-            return this@BaseAsyncTask.doInBackground(this)
+            return this@BaseAsyncTask.doInBackground()
         }
 
         override fun onProgressUpdate(vararg values: PROGRESS) {
@@ -75,6 +82,13 @@ abstract class BaseAsyncTask<MKR, PROGRESS> {
             if (values.isNotEmpty() && values[0] != null) {
                 this@BaseAsyncTask.asyncCallBack?.onProgress(values[0])
             }
+        }
+
+        /**
+         * Method to send the progress update call to asynctask
+         */
+        fun progressUpdate(value: PROGRESS) {
+            progressUpdate(value)
         }
 
         override fun onPostExecute(mkr: MKR?) {
