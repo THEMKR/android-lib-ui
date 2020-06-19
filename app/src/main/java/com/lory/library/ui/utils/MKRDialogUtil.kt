@@ -17,10 +17,8 @@ import com.lory.library.ui.ui.view.ProgressView
 
 
 /**
- * Dialog class for showing Progress dialog
- *
- *
- * Created by Sunny on 3/8/2016.
+ * @author THEMKR
+ * Dialog class to handle the Default Utility
  */
 class MKRDialogUtil {
     companion object {

@@ -6,6 +6,10 @@ import android.graphics.Paint
 import android.graphics.Path
 import android.util.AttributeSet
 
+/**
+ * @author THEMKR
+ * Class to handle the DropDown Edittext
+ */
 class EditTextDropDown : FontEditText {
     private var mPaint: Paint? = null
     private var mPath: Path? = null

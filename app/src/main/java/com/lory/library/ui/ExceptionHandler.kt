@@ -2,21 +2,22 @@ package com.lory.library.ui
 
 
 /**
- * Created by A1ZFKXA3 on 1/24/2017.
+ * @author THEMKR
+ * Class to handle Uncaught exception
  */
 
 class ExceptionHandler : Thread.UncaughtExceptionHandler {
-    private var mExceptionHandlerListener : ExceptionHandlerListener? = null
+    private var mExceptionHandlerListener: ExceptionHandlerListener? = null
 
     /**
      * Constructor
      * @param exceptionHandlerListener
      */
-    private constructor(exceptionHandlerListener : ExceptionHandlerListener?) {
+    private constructor(exceptionHandlerListener: ExceptionHandlerListener?) {
         mExceptionHandlerListener = exceptionHandlerListener
     }
 
-    override fun uncaughtException(thread : Thread, throwable : Throwable) {
+    override fun uncaughtException(thread: Thread, throwable: Throwable) {
         throwable.printStackTrace()
         mExceptionHandlerListener?.uncaughtException(throwable)
         System.exit(0)
@@ -32,7 +33,7 @@ class ExceptionHandler : Thread.UncaughtExceptionHandler {
          *
          * @param throwable
          */
-        fun uncaughtException(throwable : Throwable)
+        fun uncaughtException(throwable: Throwable)
     }
 
     companion object {
@@ -42,7 +43,7 @@ class ExceptionHandler : Thread.UncaughtExceptionHandler {
          *
          * @param exceptionHandlerListener
          */
-        fun attachExceptionHandler(exceptionHandlerListener : ExceptionHandlerListener) {
+        fun attachExceptionHandler(exceptionHandlerListener: ExceptionHandlerListener) {
             Thread.setDefaultUncaughtExceptionHandler(ExceptionHandler(exceptionHandlerListener))
         }
     }

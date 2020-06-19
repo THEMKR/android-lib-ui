@@ -7,7 +7,8 @@ import android.widget.Toast
 
 
 /**
- * Created by delhivery on 4/7/16.
+ * @author THEMKR
+ * Class responsible to handle the Ap permission flow
  */
 open class AppPermissionController {
     private val permission: Array<String>

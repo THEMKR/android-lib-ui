@@ -1,11 +1,10 @@
-package com.lory.library.ui.asynctask
+package com.lory.library.asynctask
 
 /**
- * Created by A1ZFKXA3 on 1/30/2018.
+ * @author THEMKR
  */
-
 open class BaseAsyncTaskProvider {
-    private var mIsAttach : Boolean = false
+    private var mIsAttach: Boolean = false
 
     /**
      * Method to attach network provider
@@ -26,7 +25,7 @@ open class BaseAsyncTaskProvider {
      *
      * @param asyncCallBack
      */
-    fun notifyTaskResponse(asyncCallBack : AsyncCallBack<Any, Any>, o : Any?) {
+    fun notifyTaskResponse(asyncCallBack: AsyncCallBack<Any, Any>, o: Any?) {
         if (mIsAttach) {
             asyncCallBack.onSuccess(o)
         }
@@ -37,7 +36,7 @@ open class BaseAsyncTaskProvider {
      *
      * @param asyncCallBack
      */
-    fun notifyTaskProgress(asyncCallBack : AsyncCallBack<Any, Any>, o : Any?) {
+    fun notifyTaskProgress(asyncCallBack: AsyncCallBack<Any, Any>, o: Any?) {
         if (mIsAttach) {
             asyncCallBack.onProgress(o)
         }

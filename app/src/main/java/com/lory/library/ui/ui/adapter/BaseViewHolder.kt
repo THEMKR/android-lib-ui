@@ -5,7 +5,7 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 
 /**
- * Created by mkr on 3/4/18.
+ * @author THEMKR
  */
 abstract class BaseViewHolder<MKR> : RecyclerView.ViewHolder, View.OnClickListener, View.OnLongClickListener {
     protected val mParent: View

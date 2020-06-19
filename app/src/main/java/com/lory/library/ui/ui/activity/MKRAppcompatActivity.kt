@@ -13,6 +13,11 @@ import com.lory.library.ui.callback.OnBaseFragmentListener
 import com.lory.library.ui.controller.AppPermissionController
 import com.lory.library.ui.utils.Tracer
 
+/**
+ * @author THEMKR
+ * All activity should extend this class.
+ * This class contain all the impl for fragment handling
+ */
 abstract class MKRAppcompatActivity : AppCompatActivity(), OnBaseActivityListener, AppPermissionController.OnAppPermissionControllerListener {
 
     companion object {
@@ -37,9 +42,9 @@ abstract class MKRAppcompatActivity : AppCompatActivity(), OnBaseActivityListene
 
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
-        if(getRequiredPermissions().size>0){
+        if (getRequiredPermissions().size > 0) {
             checkAndCallPermission()
-        }else{
+        } else {
             init(intent)
         }
     }

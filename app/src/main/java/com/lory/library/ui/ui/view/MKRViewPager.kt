@@ -5,9 +5,9 @@ import android.util.AttributeSet
 import androidx.viewpager.widget.ViewPager
 
 /**
- * Created by A1ZFKXA3 on 8/21/2017.
+ * @author THEMKR
+ * Class to handle the ViewPager
  */
-
 open class MKRViewPager : ViewPager {
     private var mOnPageChangeListener: OnPageChangeListener? = null
 

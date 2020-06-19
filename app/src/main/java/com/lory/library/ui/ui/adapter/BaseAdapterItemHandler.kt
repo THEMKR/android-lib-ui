@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 
 /**
- *
+ * @author THEMKR
  */
 abstract class BaseAdapterItemHandler {
 
@@ -16,5 +16,5 @@ abstract class BaseAdapterItemHandler {
      * @param viewType
      * @return
      */
-    abstract fun createHolder(inflater : LayoutInflater, parent : ViewGroup, viewType : Int) : BaseViewHolder<*>
+    abstract fun createHolder(inflater: LayoutInflater, parent: ViewGroup, viewType: Int): BaseViewHolder<*>
 }

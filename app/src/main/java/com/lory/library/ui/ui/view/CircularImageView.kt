@@ -9,9 +9,9 @@ import androidx.annotation.RequiresApi
 import com.lory.library.ui.R
 
 /**
- * Created by mkr on 30/3/18.
+ * @author THEMKR
+ * Class to handle Circular Image View
  */
-
 class CircularImageView : View {
 
     companion object {

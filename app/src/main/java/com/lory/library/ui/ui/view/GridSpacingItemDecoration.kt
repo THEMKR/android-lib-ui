@@ -6,6 +6,10 @@ import android.graphics.Rect
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 
+/**
+ * @author THEMKR
+ * Class to handle the Recycler-View Grid Spacing
+ */
 class GridSpacingItemDecoration : RecyclerView.ItemDecoration {
     private val paint: Paint = Paint()
     private val spanCount: Int

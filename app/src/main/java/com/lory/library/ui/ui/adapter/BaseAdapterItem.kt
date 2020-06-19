@@ -1,8 +1,11 @@
 package com.lory.library.ui.ui.adapter
 
+/**
+ * @author THEMKR
+ */
 class BaseAdapterItem<MKR> {
-    private var mViewType : Int? = null
-    private var mMkr : MKR? = null
+    private var mViewType: Int? = null
+    private var mMkr: MKR? = null
 
     /**
      * Constructor
@@ -10,35 +13,35 @@ class BaseAdapterItem<MKR> {
      * @param viewType
      * @param mkr         Object Data pass to the BaseViewHolder
      */
-    constructor(viewType : Int, mkr : MKR) {
+    constructor(viewType: Int, mkr: MKR) {
         mViewType = viewType
         mMkr = mkr
     }
 
-    fun getViewType() : Int {
+    fun getViewType(): Int {
         return mViewType!!
     }
 
-    fun getData() : MKR{
+    fun getData(): MKR {
         return mMkr!!
     }
 
-    override fun equals(obj : Any?) : Boolean {
+    override fun equals(obj: Any?): Boolean {
         try {
             if (obj is BaseAdapterItem<*>) {
                 val adapterItem = obj as BaseAdapterItem<*>?
-                if (adapterItem !!.mViewType == mViewType && adapterItem.mMkr == mMkr) {
+                if (adapterItem!!.mViewType == mViewType && adapterItem.mMkr == mMkr) {
                     return true
                 }
             }
-        } catch (e : Exception) {
+        } catch (e: Exception) {
             // Any exception occur at the time of equals operation
         }
 
         return false
     }
 
-    override fun hashCode() : Int {
+    override fun hashCode(): Int {
         return mMkr!!.hashCode()
     }
 }

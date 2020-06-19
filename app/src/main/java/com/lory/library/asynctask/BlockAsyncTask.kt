@@ -1,9 +1,9 @@
-package com.lory.library.ui.asynctask
+package com.lory.library.asynctask
 
 import android.content.Context
 
 /**
- * Created by mkr on 3/4/18.
+ * @author THEMKR
  */
 abstract class BaseBlockAsyncTask<MKR, PROGRESS> : BaseAsyncTask<MKR, PROGRESS> {
 

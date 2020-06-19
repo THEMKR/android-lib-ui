@@ -5,9 +5,9 @@ import android.util.AttributeSet
 import androidx.recyclerview.widget.RecyclerView
 
 /**
- * Created by A1ZFKXA3 on 8/21/2017.
+ * @author THEMKR
+ * Class to handle the Recycler-View
  */
-
 open class MKRRecyclerView : RecyclerView {
     private var mOldOnScrollListener: RecyclerView.OnScrollListener? = null
 

@@ -1,10 +1,10 @@
-package com.lory.library.ui.asynctask
+package com.lory.library.asynctask
 
 import android.content.Context
 import android.os.AsyncTask
 
 /**
- * Created by mkr on 3/4/18.
+ * @author THEMKR
  */
 abstract class BaseAsyncTask<MKR, PROGRESS> : AsyncTask<Void, PROGRESS, MKR> {
 

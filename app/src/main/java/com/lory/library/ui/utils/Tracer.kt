@@ -2,7 +2,6 @@ package com.lory.library.ui.utils
 
 import android.content.Context
 import android.graphics.Color
-import android.os.Environment
 import android.util.Log
 import android.view.Gravity
 import android.view.View
@@ -10,13 +9,10 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.google.android.material.snackbar.Snackbar
 import com.lory.library.ui.R
-import java.io.BufferedWriter
-import java.io.File
-import java.io.FileWriter
-import java.io.IOException
 
 /**
- * Created by delhivery on 21/3/16.
+ * @author THEMKR
+ * Class to handle the Logs and SnackBar
  */
 class Tracer {
     companion object {

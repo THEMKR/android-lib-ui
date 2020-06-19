@@ -8,6 +8,10 @@ import android.widget.AutoCompleteTextView
 import androidx.annotation.RequiresApi
 import com.lory.library.ui.R
 
+/**
+ * @author THEMKR
+ * Class to handle the Font Textview
+ */
 class FontAutoCompleteTextView : AutoCompleteTextView {
 
     constructor(context: Context) : super(context) {

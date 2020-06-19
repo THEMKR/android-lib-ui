@@ -7,6 +7,10 @@ import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatEditText
 import com.lory.library.ui.R
 
+/**
+ * @author THEMKR
+ * Class to handle the Font Edittext
+ */
 @SuppressLint("NewApi")
 open class AppCompatFontEditText : AppCompatEditText {
 

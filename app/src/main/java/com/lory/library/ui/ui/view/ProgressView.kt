@@ -10,10 +10,8 @@ import android.view.View
 
 
 /**
- * Progress Dialog View
- *
- *
- * Created by Sunny on 3/8/2016.
+ * @author THEMKR
+ * Class to handle the Progress View
  */
 class ProgressView : View {
 

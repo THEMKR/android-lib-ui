@@ -6,6 +6,10 @@ import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatAutoCompleteTextView
 import com.lory.library.ui.R
 
+/**
+ * @author THEMKR
+ * Class to handle the Font Autocompleteedittext
+ */
 class AppCompatFontAutoCompleteTextView : AppCompatAutoCompleteTextView {
 
     constructor(context: Context) : super(context) {

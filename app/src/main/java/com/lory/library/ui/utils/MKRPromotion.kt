@@ -4,6 +4,10 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 
+/**
+ * @author THEMKR
+ * Class to hold the utility for PlayStore
+ */
 class MKRPromotion {
     companion object {
 

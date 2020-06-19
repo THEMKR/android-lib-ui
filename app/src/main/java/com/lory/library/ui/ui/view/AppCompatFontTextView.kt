@@ -7,6 +7,10 @@ import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatTextView
 import com.lory.library.ui.R
 
+/**
+ * @author THEMKR
+ * Class to handle the Font Textview
+ */
 @SuppressLint("NewApi")
 open class AppCompatFontTextView : AppCompatTextView {
 

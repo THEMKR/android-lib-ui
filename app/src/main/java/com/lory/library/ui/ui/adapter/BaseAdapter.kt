@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import java.util.*
 
 /**
- * Created by mkr on 3/4/18.
+ * @author THEMKR
  */
 open class BaseAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>, BaseViewHolder.VHClickable, BaseViewHolder.VHLongClickable {
     private val mBaseAdapterItemList: ArrayList<BaseAdapterItem<*>> = ArrayList()

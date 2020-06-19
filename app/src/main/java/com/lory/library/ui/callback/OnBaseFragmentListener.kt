@@ -3,9 +3,8 @@ package com.lory.library.ui.callback
 import android.os.Bundle
 
 /**
- * Created by a1zfkxa3 on 11/28/2017.
+ * @author THEMKR
  */
-
 interface OnBaseFragmentListener {
 
     /**
