@@ -7,7 +7,7 @@
 
 #	APP Level Gradle
 
-    implementation 'com.lory.library:ui:1.0.8'
+    implementation 'com.lory.library:lib:1.0.0'
 	
 	<!-- DEPENDENCY INCLUDE IN LIB -->
 	implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -19,3 +19,4 @@
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.browser:browser:1.0.0'
+    implementation 'com.squareup.okhttp3:okhttp:3.14.3'
