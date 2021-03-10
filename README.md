@@ -7,7 +7,7 @@
 
 #	APP Level Gradle
 
-    implementation 'com.lory.library:lib:1.0.0'
+    implementation 'com.lory.library:lib:1.1.0'
 	
 	<!-- DEPENDENCY INCLUDE IN LIB -->
 	implementation fileTree(dir: 'libs', include: ['*.jar'])
