@@ -293,6 +293,8 @@ abstract class BaseNetworkTask<MKR> {
                         e.printStackTrace()
                     }
 
+                } else {
+                    param += "&$key=$s"
                 }
             }
             param = param.trim()
