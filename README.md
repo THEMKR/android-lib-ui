@@ -7,7 +7,7 @@
 
 #	APP Level Gradle
 
-    implementation 'com.lory.library:lib:1.1.2'
+    implementation 'com.lory.library:lib:2.0.1'
 	
 	<!-- DEPENDENCY INCLUDE IN LIB -->
     def core_version = "1.3.0"
