@@ -7,7 +7,7 @@
 
 #	APP Level Gradle
 
-    implementation 'com.lory.library:ui:2.0.1'
+    implementation 'com.mkr.lib:ui:1.0.0'
 	
 	<!-- DEPENDENCY INCLUDE IN LIB -->
     def core_version = "1.3.0"
