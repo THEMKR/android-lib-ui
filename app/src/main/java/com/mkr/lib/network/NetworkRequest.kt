@@ -1,6 +1,7 @@
 package com.mkr.lib.network
 
 import android.os.AsyncTask
+import com.mkr.lib.asynctask.CoroutinesAsyncTask
 import okhttp3.*
 import java.io.IOException
 import java.net.URL
@@ -167,14 +168,14 @@ class NetworkRequest {
     /**
      * Watcher is used to check weather the request Queue is empty or not
      */
-    private class Watcher() : AsyncTask<Void, NetworkRequest, Void>() {
+    private class Watcher() : CoroutinesAsyncTask<Void, NetworkRequest, Void>() {
         private var mIsWatching: Boolean? = null
 
         init {
             mIsWatching = true
         }
 
-        override fun doInBackground(vararg voids: Void): Void? {
+        override fun doInBackground(vararg voids: Void?): Void? {
             setWatching(true)
             while (mNetworkRequestList.size > 0 || mThreadCount > 0) {
                 try {
@@ -199,7 +200,7 @@ class NetworkRequest {
             Worker(values[0]).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR)
         }
 
-        protected override fun onPostExecute(aVoid: Void?) {
+        override fun onPostExecute(aVoid: Void?) {
             super.onPostExecute(aVoid)
             setWatching(false)
             initiateWatcher()
@@ -229,7 +230,7 @@ class NetworkRequest {
     /**
      * Worker class to perform the API Calling Operation
      */
-    private class Worker : AsyncTask<Void, Void, Any> {
+    private class Worker : CoroutinesAsyncTask<Void, Void, Any> {
         private val mNetworkRequest: NetworkRequest
         private var retryCount: Int = 1
 
@@ -268,4 +269,5 @@ class NetworkRequest {
             }
         }
     }
+
 }

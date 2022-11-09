@@ -6,7 +6,7 @@ import android.os.AsyncTask
 /**
  * @author THEMKR
  */
-abstract class BaseAsyncTask<MKR, PROGRESS> : AsyncTask<Void, PROGRESS, MKR> {
+abstract class BaseAsyncTask<MKR, PROGRESS> : CoroutinesAsyncTask<Void, PROGRESS, MKR> {
 
     protected var asyncCallBack: AsyncCallBack<MKR, PROGRESS>? = null
     protected val context: Context
@@ -32,7 +32,7 @@ abstract class BaseAsyncTask<MKR, PROGRESS> : AsyncTask<Void, PROGRESS, MKR> {
     /**
      * USER SHOULD NOT OVER RIDE THIS METHOD
      */
-    override fun doInBackground(vararg voids: Void): MKR? {
+    override fun doInBackground(vararg voids: Void?): MKR {
         return this@BaseAsyncTask.doInBackground()
     }
 
